@@ -37,10 +37,25 @@ namespace _5
                 }
                 else if (command[0] == "shift")
                 {
-                    int position = int.Parse(command[1]);
-                    
+                    int positions = int.Parse(command[1]);
+                    for (int i = 0; i < positions; i++)
+                    {
+                        int temp = nums[i];
+                        nums.Add(temp);
+                    }
+                    nums.RemoveRange(0, positions);
                 }
-            } 
+                else if(command[0] == "sumPairs")
+                {
+                    List<int> tempList = new List<int>();
+                    for (int i = 0; i < nums.Count; i++)
+                    {
+                        
+                    }
+                }
+                command = Console.ReadLine().Split(' ').ToArray();
+            }
+            Console.WriteLine(string.Join(" ", nums));
         }
     }
 }
