@@ -12,23 +12,23 @@ namespace _5
         {
             List<int> nums = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
             string[] command = Console.ReadLine().Split(' ').ToArray();
-            while(command[0] != "print")
+            while (command[0] != "print")
             {
-                if(command[0] == "add")
+                if (command[0] == "add")
                 {
                     int idx = int.Parse(command[1]);
                     int element = int.Parse(command[2]);
                     nums.Insert(idx, element);
                 }
-                else if(command[0] == "addMany")
+                else if (command[0] == "addMany")
                 {
                     int idx = int.Parse(command[1]);
                     nums.InsertRange(idx, command.Skip(2).Select(int.Parse).ToArray());
                 }
-                else if(command[0] == "contains")
+                else if (command[0] == "contains")
                 {
                     int element = int.Parse(command[1]);
-                    Console.WriteLine(nums.Find(x => x == element));
+                    Console.WriteLine(nums.IndexOf(element));
                 }
                 else if (command[0] == "remove")
                 {
@@ -45,17 +45,34 @@ namespace _5
                     }
                     nums.RemoveRange(0, positions);
                 }
-                else if(command[0] == "sumPairs")
+                else if (command[0] == "sumPairs")
                 {
                     List<int> tempList = new List<int>();
-                    for (int i = 0; i < nums.Count; i++)
+                    int endBoundary = nums.Count;
+                    int lastElement = nums.Last();
+                    bool isOddCount = false;
+                    if (nums.Count % 2 != 0)
                     {
-                        
+                        --endBoundary;
+                        isOddCount = true;
+                    }
+                    for (int i = 1; i <= endBoundary; i++)
+                    {
+                        if (i % 2 != 0)
+                        {
+                            tempList.Add(nums[i - 1] + nums[i]);
+                        }
+                    }
+                    nums.Clear();
+                    nums.AddRange(tempList);
+                    if (isOddCount)
+                    {
+                        nums.Add(lastElement);
                     }
                 }
                 command = Console.ReadLine().Split(' ').ToArray();
             }
-            Console.WriteLine(string.Join(" ", nums));
+            Console.WriteLine($"[{string.Join(", ", nums)}]");
         }
     }
 }
