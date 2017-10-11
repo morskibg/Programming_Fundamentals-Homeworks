@@ -8,34 +8,52 @@ namespace _4
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             List<int> nums = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+            int maxNum = nums.Max();
+            List<int> currLIS = new List<int>();
+            int maxLisCount = -1;
             List<int> LIS = new List<int>();
-            int start = 0;
-            int max = 0;
-            int prevLength = 0;
-            while (start < nums.Count)
+            
+            for (int i = 0; i < nums.Count - 1; ++i)
             {
-                int currMaxNum = nums[start];
-                for (int i = start; i < nums.Count - 1; ++i)
+                bool isFinished = false;
+                int k = i + 1;
+                while (!isFinished)
                 {
+                    currLIS.Add(nums[i]);
                     
-                    if (nums[i] < nums[i + 1] && currMaxNum < nums[i + 1])
+                    for (; k < nums.Count; ++k)
                     {
-                        LIS.Add(nums[i]);
-                        currMaxNum = nums[i + 1];
+                        if(currLIS.Last() < nums[k])
+                        {
+                            currLIS.Add(nums[k]);
+                        }
                     }
+                     int lastUsedIdx = nums.IndexOf(currLIS.Last());
+                    int[] remainingNums = new int[nums.Count - lastUsedIdx - 1];
+                    nums.CopyTo(lastUsedIdx + 1, remainingNums, 0, nums.Count - lastUsedIdx - 1);
+                    int remainingMax = remainingNums.Max();
+                    if (nums[i] >= remainingMax)
+                    {
+                        isFinished = true;
+                    }
+                    ++k;
+                    if(maxLisCount < currLIS.Count)
+                    {
+                        maxLisCount = currLIS.Count;
+                        if(LIS.Count != 0)
+                        {
+                            LIS.Clear();
+                        }
+                        LIS.AddRange(currLIS);
+                    }
+                    currLIS.Clear();
                 }
-                if (LIS.Count > prevLength)
-                {
-                    max = start;
-                    prevLength = LIS.Count;
-                }
-                LIS.Clear();
-                ++start;
             }
-            int t = 0;
+            Console.WriteLine(string.Join(" ",LIS));
         }
     }
 }
