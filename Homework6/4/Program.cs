@@ -1,59 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _4
+﻿namespace Longest_Increasing_Subsequence
 {
-    class Program
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    public class LongestIncreasingSubsequence
     {
-
-        static void Main(string[] args)
+        public static void Main()
         {
-            List<int> nums = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
-            int maxNum = nums.Max();
-            List<int> currLIS = new List<int>();
-            int maxLisCount = -1;
-            List<int> LIS = new List<int>();
-            
-            for (int i = 0; i < nums.Count - 1; ++i)
+            var sequence = Console.ReadLine().Split(' ').Select(x => int.Parse(x)).ToArray();
+            var longestSeq = FindLongestIncreasingSubsequence(sequence);
+            Console.WriteLine(string.Join(" ", longestSeq));
+        }
+
+        public static int[] FindLongestIncreasingSubsequence(int[] sequence)
+        {
+            int[] length = new int[sequence.Length];
+            int[] prev = new int[sequence.Length];
+            int maxLength = 0;
+            int lastIndex = -1;
+
+            for (int i = 0; i < sequence.Length; i++)
             {
-                bool isFinished = false;
-                int k = i + 1;
-                while (!isFinished)
+                length[i] = 1;
+                prev[i] = -1;
+
+                for (int j = 0; j < i; j++)
                 {
-                    currLIS.Add(nums[i]);
-                    
-                    for (; k < nums.Count; ++k)
+                    if (sequence[j] < sequence[i] && length[j] >= length[i])
                     {
-                        if(currLIS.Last() < nums[k])
-                        {
-                            currLIS.Add(nums[k]);
-                        }
+                        length[i] = 1 + length[j];
+                        prev[i] = j;
                     }
-                     int lastUsedIdx = nums.IndexOf(currLIS.Last());
-                    int[] remainingNums = new int[nums.Count - lastUsedIdx - 1];
-                    nums.CopyTo(lastUsedIdx + 1, remainingNums, 0, nums.Count - lastUsedIdx - 1);
-                    int remainingMax = remainingNums.Max();
-                    if (nums[i] >= remainingMax)
-                    {
-                        isFinished = true;
-                    }
-                    ++k;
-                    if(maxLisCount < currLIS.Count)
-                    {
-                        maxLisCount = currLIS.Count;
-                        if(LIS.Count != 0)
-                        {
-                            LIS.Clear();
-                        }
-                        LIS.AddRange(currLIS);
-                    }
-                    currLIS.Clear();
+                }
+
+                if (length[i] > maxLength)
+                {
+                    maxLength = length[i];
+                    lastIndex = i;
                 }
             }
-            Console.WriteLine(string.Join(" ",LIS));
+
+            var longestSeq = new List<int>();
+            for (int i = 0; i < maxLength; i++)
+            {
+                longestSeq.Add(sequence[lastIndex]);
+                lastIndex = prev[lastIndex];
+            }
+
+            longestSeq.Reverse();
+            return longestSeq.ToArray();
         }
     }
 }
