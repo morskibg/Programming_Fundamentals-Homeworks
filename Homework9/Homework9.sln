@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3. Equal Sums", "3. Equal S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4. Max Sequence of Equal Elements", "4. Max Sequence of Equal Elements\4. Max Sequence of Equal Elements.csproj", "{B867B4CE-BB04-45DC-8C45-326183AC97CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5. A Miner Task", "5. A Miner Task\5. A Miner Task.csproj", "{39BCD44E-0078-4097-8FC1-1FA759C3CB9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B867B4CE-BB04-45DC-8C45-326183AC97CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B867B4CE-BB04-45DC-8C45-326183AC97CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B867B4CE-BB04-45DC-8C45-326183AC97CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39BCD44E-0078-4097-8FC1-1FA759C3CB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39BCD44E-0078-4097-8FC1-1FA759C3CB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39BCD44E-0078-4097-8FC1-1FA759C3CB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39BCD44E-0078-4097-8FC1-1FA759C3CB9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
