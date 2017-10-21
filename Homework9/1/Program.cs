@@ -31,8 +31,7 @@ namespace _1
                 occurrence = kvp.Value;
                 break;
             }
-            string result = $"The number {number} is the most frequent leftmost (occurs {occurrence} times.)";
-            File.WriteAllText("output.txt", result);
+            File.WriteAllText("output.txt", $"The number {number} is the most frequent leftmost (occurs {occurrence} times.)");
         }
     }
 }

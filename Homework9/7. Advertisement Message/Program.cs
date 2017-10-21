@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,16 +42,16 @@ namespace _7.Advertisement_Message
             };
             
             
-            int n = int.Parse(Console.ReadLine());
+            int n = int.Parse(File.ReadAllText("input.txt"));
+            File.WriteAllText("output.txt", "");
             for (int i = 0; i < n; i++)
             {
-                Console.WriteLine($"{Phrases[rand.Next(0, Phrases.Length)]} {Events[rand.Next(0, Events.Length)]} " +
-                                  $"{Authors[rand.Next(0, Authors.Length)]} {Cities[rand.Next(0, Cities.Length)]}");
-                //Console.Write($"{Phrases[rand.Next(0, Phrases.Length)]}");
-                //Console.Write($" {Events[rand.Next(0, Events.Length)]}");
-                //Console.Write($" {Authors[rand.Next(0, Authors.Length)]}");
-                //Console.Write($" {Cities[rand.Next(0, Cities.Length)]}");
-                //Console.WriteLine();
+               
+                File.AppendAllText("output.txt",$"{Phrases[rand.Next(0, Phrases.Length)]}");
+                File.AppendAllText("output.txt", $" {Events[rand.Next(0, Events.Length)]}");
+                File.AppendAllText("output.txt", $" {Authors[rand.Next(0, Authors.Length)]}");
+                File.AppendAllText("output.txt", $" {Cities[rand.Next(0, Cities.Length)]}" + Environment.NewLine);
+                
             }
         }
     }

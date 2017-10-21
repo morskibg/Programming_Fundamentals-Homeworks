@@ -28,13 +28,13 @@ namespace _3.Equal_Sums
                 }
                 if (leftSum == rightSum)
                 {
-                    Console.WriteLine(i);
+                    File.WriteAllText("output.txt", i.ToString());
                     isFounded = true;
                 }
             }
             if (!isFounded)
             {
-                Console.WriteLine("no");
+                File.WriteAllText("output.txt", "no");
             }
         }
     }

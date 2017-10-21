@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,14 +14,15 @@ namespace _5.A_Miner_Task
             Dictionary<string, long> minerData = new Dictionary<string, long>();
             
             
-            string input = Console.ReadLine();
+            string[] input = File.ReadAllLines("input.txt");
+            int idx = 0;
             string lastMetal = "";
-            while (input != "stop")
+            while (input[idx] != "stop")
             {
                 long parsed;
-                if (!long.TryParse(input, out parsed))
+                if (!long.TryParse(input[idx], out parsed))
                 {
-                    lastMetal = input;
+                    lastMetal = input[idx];
                     if (!minerData.ContainsKey(lastMetal))
                     {
                         minerData[lastMetal] = 0;
@@ -30,11 +32,13 @@ namespace _5.A_Miner_Task
                 {
                     minerData[lastMetal] += parsed;
                 }
-                input = Console.ReadLine();
+                ++idx;
             }
+            File.WriteAllText("output.txt","");
             foreach (var metal in minerData)
             {
-                Console.WriteLine($"{metal.Key} -> {metal.Value}");
+                
+                File.AppendAllText("output.txt", $"{metal.Key.ToString()} -> {metal.Value.ToString()}" + Environment.NewLine);
             }
         }
     }

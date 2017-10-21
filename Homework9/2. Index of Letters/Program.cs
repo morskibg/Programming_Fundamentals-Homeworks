@@ -12,11 +12,10 @@ namespace _2.Index_of_Letters
         static void Main(string[] args)
         {
             string inputWord = File.ReadAllText("input.txt").ToLower().Trim();
+            File.WriteAllText("output.txt", "");
             foreach (char ch in inputWord)
             {
-                int num = (int) (ch - 'a');
-                string res = $"{ch} -> {num}";
-                File.AppendAllText("output.txt", res + Environment.NewLine);
+                File.AppendAllText("output.txt", $"{ch} -> {(int)(ch - 'a')}" + Environment.NewLine);
             }
         }
     }

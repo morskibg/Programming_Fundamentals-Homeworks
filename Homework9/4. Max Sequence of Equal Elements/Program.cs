@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace _4.Max_Sequence_of_Equal_Elements
     {
         static void Main(string[] args)
         {
-            int[] nums = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+            int[] nums = File.ReadAllText("input.txt").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse).ToArray();
             List<List<int>> maxSeq = new List<List<int>>();
             maxSeq.Add(new List<int>{nums[0]});
@@ -23,9 +24,10 @@ namespace _4.Max_Sequence_of_Equal_Elements
                 }
                 maxSeq.Last().Add(nums[i]);
             }
+            File.WriteAllText("output.txt","");
             foreach (var maxList in maxSeq.OrderByDescending(x => x.Count))
             {
-                Console.WriteLine($"{string.Join(" ", maxList)}");
+                File.AppendAllText("output.txt",$"{string.Join(" ", maxList)}");
                 return;
             }
         }
