@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5. A Miner Task", "5. A Min
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6. Fix Emails", "6. Fix Emails\6. Fix Emails.csproj", "{E473BA4F-38DD-4889-BC46-FF2B9B064602}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7. Advertisement Message", "7. Advertisement Message\7. Advertisement Message.csproj", "{BAA3CEA8-33B1-4EF6-A365-3375AC17455C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "8. Average Grades", "8. Average Grades\8. Average Grades.csproj", "{4A4263EC-0A10-4EB8-9D6D-945DF2282719}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{E473BA4F-38DD-4889-BC46-FF2B9B064602}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E473BA4F-38DD-4889-BC46-FF2B9B064602}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E473BA4F-38DD-4889-BC46-FF2B9B064602}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAA3CEA8-33B1-4EF6-A365-3375AC17455C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAA3CEA8-33B1-4EF6-A365-3375AC17455C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAA3CEA8-33B1-4EF6-A365-3375AC17455C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA3CEA8-33B1-4EF6-A365-3375AC17455C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A4263EC-0A10-4EB8-9D6D-945DF2282719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A4263EC-0A10-4EB8-9D6D-945DF2282719}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A4263EC-0A10-4EB8-9D6D-945DF2282719}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A4263EC-0A10-4EB8-9D6D-945DF2282719}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
