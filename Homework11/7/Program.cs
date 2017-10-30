@@ -12,36 +12,57 @@ namespace _7
     {
         static void Main(string[] args)
         {
-            
+
             string input = Console.ReadLine();
+            Regex decodingSpaces = new Regex("%20|\\+");
+            Regex removeExtraInsideSpaces = new Regex("\\s{2,9999}");
+            
+            string pattern = @"((?<=\&|^).*?(?=\=))\=+(.*?(?=\&|$))";
             while (input != "END")
             {
                 Dictionary<string, string> fieldValues = new Dictionary<string, string>();
-                string pattern = @"((?<=\&|^).*?(?=\=))\=+(.*?(?=\&|$))";
                 MatchCollection matchedFieldValues = Regex.Matches(input, pattern);
                 int count = matchedFieldValues.Count;
-                StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < count; i++)
                 {
-                    int groupCount = matchedFieldValues[i].Groups.Count - 1;
-                    for (int j = 1; j <= groupCount; ++j)
+                    int matchGroupsCounter = matchedFieldValues[i].Groups.Count;
+                    for (int j = 1; j < matchGroupsCounter - 1; j += 2)
                     {
-                        if (j % 2 != 0)
+
+                        string decodedKey = decodingSpaces
+                            .Replace(matchedFieldValues[i].Groups[j].ToString(), " ")
+                            .Trim();
+                        decodedKey = removeExtraInsideSpaces.Replace(decodedKey, " ");
+                        if (decodedKey.Contains("?"))
                         {
-                            sb.Append(matchedFieldValues[i].Groups[j]);
+                            decodedKey = decodedKey.Substring(decodedKey.IndexOf("?") + 1);
+                        }
+                        string decodedValue = decodingSpaces
+                            .Replace(matchedFieldValues[i].Groups[j + 1].ToString(), " ")
+                            .Trim();
+                        decodedValue = removeExtraInsideSpaces.Replace(decodedValue, " ");
+                        if (decodedValue.Contains("?"))
+                        {
+                            decodedValue = decodedValue.Substring(decodedValue.IndexOf("?") + 1);
+                        }
+                        if (!fieldValues.ContainsKey(decodedKey))
+                        {
+                            fieldValues[decodedKey] = decodedValue;
                         }
                         else
                         {
-                            sb.Append("=[");
-                            sb.Append(matchedFieldValues[i].Groups[j]);
-                            sb.Append("]");
-                        }
+                            fieldValues[decodedKey] += ", " + decodedValue;
+                        }                        
                     }
-                    Console.WriteLine(sb);
                 }
-                
+                foreach (var item in fieldValues)
+                {
+                    Console.Write($"{item.Key}=[{item.Value}]");
+                }
+                Console.WriteLine();
                 input = Console.ReadLine();
             }
+
         }
     }
 }
